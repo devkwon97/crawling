@@ -12,9 +12,7 @@ req = requests.get('https://www.yna.co.kr/safe/news')
 req.encoding= None
 html = req.content
 soup = BeautifulSoup(html, 'html.parser')
-datas = soup.select(
-    'div.contents > div.content01 > div > ul > li >article > div >h3'
-    )
+datas = soup.select('div.contents > div.content01 > div > ul > li >article > div >h3')
 
 data = {}
 
@@ -26,4 +24,4 @@ for title in datas:
 with open(os.path.join(BASE_DIR, 'news.json'), 'w+',encoding='utf-8') as json_file:
     json.dump(data, json_file, ensure_ascii = False, indent='\t')
 
-print('뉴스기사크롤러 끝')
+print('뉴스기사 크롤링 종료')
